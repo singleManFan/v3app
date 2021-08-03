@@ -1,6 +1,6 @@
 <template>
   <!-- 全屏控件 -->
-  <div class="h-screen bg-blue-pattern text-white text-sm">
+  <div class="h-screen bg-blue-pattern text-white text-xs">
     <!-- 控件渲染区 -->
     <div class="relative z-10">
       <data-centre></data-centre>

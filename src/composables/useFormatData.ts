@@ -1,28 +1,26 @@
-import { Ref, ref, onMounted } from 'vue'
-import { transformDate } from 'utils'
+import { Ref, ref, onMounted } from 'vue';
+import { transformDate } from 'utils';
 
-export type FormatDateRef = Ref<string | null>
+export type FormatDateRef = Ref<string | null>;
 
-const formatDate = ref<string | null>(null)
+const formatDate = ref<string | null>(null);
 
 export interface IFormatDate {
-    formatDate: FormatDateRef;
-    setFormDate: (timestamp: number) => any
+  formatDate: FormatDateRef;
+  setFormDate: (timestamp: number) => any;
 }
 
 export const useFormatDate = (timestamp: number): IFormatDate => {
+  const setFormDate = (timestamp: number): void => {
+    formatDate.value = transformDate(timestamp);
+  };
 
-    const setFormDate = (timestamp: number): void => {
-        formatDate.value = transformDate(timestamp)
-        console.log(transformDate(timestamp))
-    }
+  onMounted(() => {
+    setFormDate(timestamp);
+  });
 
-    onMounted(() => {
-        setFormDate(timestamp)
-    })
-
-    return {
-        formatDate,
-        setFormDate
-    }
-}
+  return {
+    formatDate,
+    setFormDate,
+  };
+};
