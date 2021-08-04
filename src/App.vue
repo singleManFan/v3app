@@ -4,7 +4,9 @@
     <!-- 控件渲染区 -->
     <div class="relative h-full z-10 flex flex-col">
       <header-bar></header-bar>
-      <router-view class="flex-grow"></router-view>
+      <keep-alive>
+        <router-view class="flex-grow"></router-view>
+      </keep-alive>
     </div>
     <!-- 背景动画 -->
     <starry-sky></starry-sky>
