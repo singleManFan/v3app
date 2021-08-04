@@ -5,7 +5,8 @@ module.exports = {
     flex: {
       'justify-around': 'justify-content: flex-around',
       'justify-between': 'justify-content: flex-between',
-      'align-center': 'align-items:center',
+      'justify-end': 'justify-content: flex-end',
+      'align-center': ' align-items: center',
     },
     extend: {
       backgroundImage: (theme) => ({

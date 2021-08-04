@@ -1,11 +1,19 @@
 <template>
-  <header class="border-primary border-b">
-    <section class="flex justify-between px-2 pt-1">
-      <div>实时天气</div>
+  <header class="border-primary border-b px-2">
+    <section class="flex justify-between pt-1">
+      <section class="pb-1 flex justify-end">
+        <div class="text-xs text-primary t-shape bg-opacity-20">
+          <router-link to="/">数据中心</router-link>
+        </div>
+        <div class="text-xs text-primary t-shape bg-opacity-20">
+          <router-link to="/real-time">实时监控</router-link>
+        </div>
+        <div class="text-xs text-primary t-shape bg-opacity-20">
+          <router-link to="/base-info">基础信息</router-link>
+        </div>
+        <div class="text-xs text-primary t-shape bg-opacity-20">设备管理</div>
+      </section>
       <div>{{ formatDate }}</div>
-    </section>
-    <section class="pb-1">
-      <h1 class="text-center text-primary">数据中心</h1>
     </section>
   </header>
 </template>

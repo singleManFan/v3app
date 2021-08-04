@@ -4,20 +4,95 @@
 @tailwind utilities;
 
 html {
-    overflow:hidden;
+  overflow: hidden;
 }
 
 @layer utilities {
-   .lump {
-       position:relative;
-   }
+  .scroll {
+    overflow-y: scroll;
+  }
+
+  .lump {
+    position: relative;
+  }
 
   .lump::before {
-    content:'';
-    position:absolute;
-    width:10px;
-    height:10px;
-    transform: translate(-150%,30%);
-    background:linear-gradient(to top,#3876cd,#54ffff)
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    transform: translate(-150%, 60%);
+    background: linear-gradient(to top, #3876cd, #54ffff);
+  }
+
+  .t-bg,
+  .t-bg-p {
+    position: relative;
+    padding-top: 0.225rem;
+    padding-bottom: 0.225rem;
+  }
+
+  .t-bg::before,
+  .t-bg-p::before {
+    content: ''; /*用伪元素来生成一个矩形*/
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to right, #3876cd, #45b4e7);
+    z-index: -1; /*背景色要在文字的下一层，以免挡住文字*/
+    opacity: 0.5;
+  }
+
+  .t-bg-p::before {
+    opacity: 0.3;
+  }
+
+  .t-shape {
+    padding: 0.25em 0.45em 0.25em;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .t-shape:hover::before {
+    background: linear-gradient(to right, #45b4e7, #3876cd);
+    opacity: 0.6;
+  }
+
+  .t-shape::before {
+    content: ''; /*用伪元素来生成一个矩形*/
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to right, #3876cd, #45b4e7);
+    z-index: -1; /*背景色要在文字的下一层，以免挡住文字*/
+    transform: perspective(100px) skew(-30deg);
+    opacity: 0.3;
+    border: dashed 4px #45b4e7;
+  }
+
+  .wireframe {
+    position: relative;
+  }
+
+  .wireframe::after {
+    content: '';
+    border: 1px solid #45b4e7;
+    border-top: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    opacity: 0.3;
+  }
+
+  .align-center {
+    align-items: center;
   }
 }

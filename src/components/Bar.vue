@@ -1,6 +1,6 @@
 <template>
   <div data-class="bar" class="w-full h-full relative">
-    <h2 class="text-center absolute text-primary -top-6 w-full">
+    <h2 class="text-center absolute text-primary -top-4 w-full">
       厨余垃圾月统计
     </h2>
     <div ref="root" class="w-full h-full"></div>
@@ -22,6 +22,7 @@ import {
   GridComponent,
   LegendComponent,
   DatasetComponent,
+  DataZoomComponent,
 } from 'echarts/components';
 import { CanvasRenderer } from 'echarts/renderers';
 echarts.use([
@@ -31,6 +32,7 @@ echarts.use([
   LegendComponent,
   DatasetComponent,
   CanvasRenderer,
+  DataZoomComponent,
 ]);
 export default defineComponent({
   name: 'Bar',
@@ -75,7 +77,7 @@ export default defineComponent({
         grid: {
           top: '5%',
           right: '5%',
-          bottom: '26%',
+          bottom: '40%',
           left: '5%',
         },
         xAxis: {

@@ -15,7 +15,7 @@
         ref="root"
         class="relative"
         id="container"
-        style="width: 100%; height: 420px"
+        style="width: 100%; height: 54vh"
       ></div>
     </section>
     <!-- 右边饼图 -->

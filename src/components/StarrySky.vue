@@ -16,7 +16,7 @@ export default defineComponent({
       canvasEl.height = window.innerHeight;
       const ctx = canvasEl.getContext('2d') as CanvasRenderingContext2D;
       // 播放背景动画
-      const play = new Play(ctx, 1400);
+      const play = new Play(ctx, 1);
       play.animation();
     });
 
