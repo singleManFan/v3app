@@ -1,40 +1,57 @@
 <template>
-  <div data-class="pie" ref="el" style="width: 100px; height: 100px"></div>
+  <div data-class="pie" class="w-full h-full relative">
+    <div class="text-primary absolute top-0">{{ name }}</div>
+    <div data-class="chart" ref="el" class="w-full h-full"></div>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
-import * as echarts from 'echarts';
+// import * as echarts from 'echarts';
+import * as echarts from 'echarts/core';
+import { PieChart } from 'echarts/charts';
+import {
+  TitleComponent,
+  TooltipComponent,
+  GridComponent,
+  LegendComponent,
+  VisualMapComponent,
+} from 'echarts/components';
+import { CanvasRenderer } from 'echarts/renderers';
+echarts.use([
+  TitleComponent,
+  TooltipComponent,
+  GridComponent,
+  LegendComponent,
+  PieChart,
+  CanvasRenderer,
+  VisualMapComponent,
+]);
 export default defineComponent({
   name: 'Pie',
-  setup() {
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+    option: {
+      type: Object, // 自动推导出类型
+      required: true,
+    },
+  },
+  setup(props) {
     const el = ref<HTMLElement | null>(null);
 
     onMounted(() => {
       const dom = el.value as HTMLElement;
       const myChart = echarts.init(dom);
 
-      myChart.setOption({
-        title: {
-          text: 'ECharts 入门示例',
-        },
-        tooltip: {},
-        xAxis: {
-          data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],
-        },
-        yAxis: {},
-        series: [
-          {
-            name: '销量',
-            type: 'bar',
-            data: [5, 20, 36, 10, 10, 20],
-          },
-        ],
-      });
+      myChart.setOption(props.option);
     });
 
     return {
       el,
+      name: props.name,
     };
   },
 });

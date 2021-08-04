@@ -12,11 +12,11 @@
     <section class="flex">
       <div class="mr-1.5">
         <label class="mr-1.5" for="start">开始时间</label
-        ><input v-model="startTime" id="start" type="date" />
+        ><input class="text-black" v-model="startTime" id="start" type="date" />
       </div>
       <div class="mr-1.5">
         <label class="mr-1.5" for="end">结束时间</label
-        ><input v-model="endTime" id="end" type="date" />
+        ><input class="text-black" v-model="endTime" id="end" type="date" />
       </div>
       <div><button @click="getChartsData">查询</button></div>
     </section>

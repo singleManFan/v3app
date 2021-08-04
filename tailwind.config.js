@@ -5,23 +5,24 @@ module.exports = {
     flex: {
       'justify-around': 'justify-content: flex-around',
       'justify-between': 'justify-content: flex-between',
+      'align-center': 'align-items:center',
     },
     extend: {
       backgroundImage: (theme) => ({
         'blue-pattern': "url('src/assets/imgs/bg.jpg')",
       }),
     },
-    borderColor: theme => ({
+    borderColor: (theme) => ({
       DEFAULT: theme('#162c52', 'currentColor'),
-      'primary': '#162c52',
+      primary: '#162c52',
     }),
     fontSize: {
-      'xs': '.6rem',
-      'sm': '.725rem',
-      'tiny': '.725rem',
-      'base': '1rem',
-      'lg': '1.125rem',
-      'xl': '1.25rem',
+      xs: '.6rem',
+      sm: '.725rem',
+      tiny: '.725rem',
+      base: '1rem',
+      lg: '1.125rem',
+      xl: '1.25rem',
       '2xl': '1.5rem',
       '3xl': '1.875rem',
       '4xl': '2.25rem',
@@ -30,12 +31,12 @@ module.exports = {
       '7xl': '5rem',
     },
     textColor: {
-      'primary': '#00deff',
-      'white': '#fff',
-      'second': '#ffd220',
-      'warn': '#ff0e0d'
-    }
-
+      primary: '#00deff',
+      white: '#fff',
+      second: '#ffd220',
+      warn: '#ff0e0d',
+      black: '#000',
+    },
   },
   variants: {
     extend: {},
