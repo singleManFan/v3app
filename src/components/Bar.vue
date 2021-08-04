@@ -14,7 +14,24 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
-import * as echarts from 'echarts';
+// import * as echarts from 'echarts';
+import * as echarts from 'echarts/core';
+import { BarChart } from 'echarts/charts';
+import {
+  TooltipComponent,
+  GridComponent,
+  LegendComponent,
+  DatasetComponent,
+} from 'echarts/components';
+import { CanvasRenderer } from 'echarts/renderers';
+echarts.use([
+  TooltipComponent,
+  GridComponent,
+  BarChart,
+  LegendComponent,
+  DatasetComponent,
+  CanvasRenderer,
+]);
 export default defineComponent({
   name: 'Bar',
   setup() {
