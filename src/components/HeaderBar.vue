@@ -41,7 +41,7 @@ export default defineComponent({
   name: 'SearchBar',
   setup() {
     const { formatDate, setFormDate }: IFormatDate = useFormatDate(Date.now());
-    let timer: number = 0;
+    let timer: any;
     // 开启计时器
     onMounted(() => {
       timer = setInterval(() => {

@@ -10,7 +10,7 @@ export interface IChartsData {
   chartsData: ChartsDataRef;
   startTime: TimeRef;
   endTime: TimeRef;
-  getChartsData: (timestamp: number) => any;
+  getChartsData: (event: MouseEvent) => any;
 }
 
 export const useChartsData = (): IChartsData => {

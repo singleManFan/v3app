@@ -45,6 +45,7 @@ import {
 } from 'echarts/charts';
 import { TooltipComponent, TitleComponentOption } from 'echarts/components';
 import { CanvasRenderer } from 'echarts/renderers';
+// @ts-ignore
 import 'echarts-extension-amap';
 import {
   install as AMapComponent,
@@ -66,6 +67,7 @@ echarts.use([
   HeatmapChart,
   CanvasRenderer,
   TooltipComponent,
+  // @ts-ignore
   AMapComponent,
   ScatterChart,
   EffectScatterChart,
@@ -84,7 +86,7 @@ const option: ECOption = {
     // 高德地图缩放
     zoom: 13,
     // 启用resize
-    resizeEnable: true,
+    // resizeEnable: true,
     // 自定义地图样式主题
     mapStyle: 'amap://styles/darkblue',
     // 移动过程中实时渲染 默认为true 如数据量较大 建议置为false
@@ -117,6 +119,7 @@ const option: ECOption = {
   animation: false,
   series: [
     {
+      // @ts-ignore
       type: 'heatmap',
       // 使用高德地图坐标系
       coordinateSystem: 'amap',
@@ -152,14 +155,18 @@ export default defineComponent({
             });
           })
         );
+        // @ts-ignore
         option.series[0].data = points;
         myChart.setOption(option);
         // 获取 ECharts 高德地图组件
+        // @ts-ignore
         var amapComponent = myChart.getModel().getComponent('amap');
         // 获取高德地图实例，使用高德地图自带的控件
         var amap = amapComponent.getAMap();
         // 添加控件 和高德地图API用法相同
+        // @ts-ignore
         amap.addControl(new AMap.Scale());
+        // @ts-ignore
         amap.addControl(new AMap.ToolBar());
         // 添加图层
         // var satelliteLayer = new AMap.TileLayer.Satellite();
