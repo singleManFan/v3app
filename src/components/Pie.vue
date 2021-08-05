@@ -51,7 +51,6 @@ export default defineComponent({
 
     return {
       el,
-      name: props.name,
     };
   },
 });

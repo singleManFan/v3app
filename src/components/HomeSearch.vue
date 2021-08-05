@@ -1,5 +1,5 @@
 <template>
-  <section data-class="search-bar" class="flex justify-between">
+  <section data-class="search" class="flex justify-between">
     <section class="flex">
       <div class="mr-1.5">
         总户数：<span class="text-primary">89.98万</span>

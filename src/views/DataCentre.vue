@@ -5,7 +5,7 @@
   >
     <section data-class="content" class="pt-1 px-2 flex-grow flex flex-col">
       <!-- 搜索区 -->
-      <search-bar></search-bar>
+      <home-search></home-search>
       <!-- 热地图展示 -->
       <charts-with-map></charts-with-map>
       <!-- 底部柱状图 -->
@@ -19,13 +19,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import SearchBar from 'components/SearchBar.vue';
+import HomeSearch from 'components/HomeSearch.vue';
 import ChartsWithMap from 'components/ChartsWithMap.vue';
 import Bar from 'components/Bar.vue';
 
 export default defineComponent({
   name: 'DataCentre',
-  components: { SearchBar, ChartsWithMap, Bar },
+  components: { HomeSearch, ChartsWithMap, Bar },
   setup() {
     return {};
   },

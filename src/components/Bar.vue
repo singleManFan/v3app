@@ -77,7 +77,7 @@ export default defineComponent({
         grid: {
           top: '5%',
           right: '5%',
-          bottom: '40%',
+          bottom: '35%',
           left: '5%',
         },
         xAxis: {

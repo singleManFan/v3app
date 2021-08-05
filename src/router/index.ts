@@ -12,11 +12,16 @@ const RealTime = () =>
 const BaseInfo = () =>
   import(/* webpackChunkName: "base-info" */ 'views/BaseInfo.vue');
 
+// 设备管理
+const DeviceManage = () =>
+  import(/* webpackChunkName: "device-manage" */ 'views/DeviceManage.vue');
+
 export default createRouter({
   history: createWebHashHistory(),
   routes: [
     { path: '/', component: DataCentre },
     { path: '/real-time', component: RealTime },
     { path: '/base-info', component: BaseInfo },
+    { path: '/device-manage', component: DeviceManage }
   ],
 });
