@@ -6,277 +6,68 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, ref } from 'vue';
 import RealTimeSearch from 'components/RealTimeSearch.vue';
 import TablePanel from 'components/TablePanel.vue';
 export default defineComponent({
   name: 'RealTime',
   components: { TablePanel, RealTimeSearch },
   setup() {
-    // mock
-    const tableData = reactive<ITableData>({
-      th: [
-        '序号',
-        '区域',
-        '街道',
-        '社区',
-        '小区',
-        '楼号',
-        '户主',
-        '垃圾类型',
-        '重量(KG)',
-        '优',
-        '良',
-        '中',
-        '差',
-        '评价分',
-        '积分',
-        '照片',
-        '上报人',
-        '时间',
-        '操作',
-      ],
-      data: [
-        [
-          {
-            id: 0,
-            value: '1',
-          },
-          {
-            id: 1,
-            value: '红谷滩区',
-          },
-          {
-            id: 2,
-            value: '中山路105号',
-          },
-          {
-            id: 3,
-            value: '富农社区',
-          },
-          {
-            id: 4,
-            value: '蓝海湾',
-          },
-          {
-            id: 5,
-            value: '10',
-          },
-          {
-            id: 6,
-            value: '杨帆',
-          },
-          {
-            id: 6,
-            value: '厨余垃圾',
-          },
+    // mock 数据
+    const tableData = ref<ITableData>([]);
 
-          {
-            id: 6,
-            value: '200',
-          },
-          {
-            id: 6,
-            value: '优',
-          },
-          {
-            id: 6,
-            value: '',
-          },
-          {
-            id: 6,
-            value: '',
-          },
-          {
-            id: 6,
-            value: '',
-          },
-          {
-            id: 6,
-            value: '10',
-          },
-          {
-            id: 6,
-            value: '8',
-          },
-          {
-            id: 6,
-            value: '无照片',
-          },
-          {
-            id: 6,
-            value: '杨帆',
-          },
-          {
-            id: 6,
-            value: '20210805',
-          },
-          {
-            id: 6,
-            value: '修改',
-          },
-        ],
-        [
-          {
-            id: 0,
-            value: '2',
-          },
-          {
-            id: 1,
-            value: '红谷滩区',
-          },
-          {
-            id: 2,
-            value: '中山路105号',
-          },
-          {
-            id: 3,
-            value: '富农社区',
-          },
-          {
-            id: 4,
-            value: '蓝海湾',
-          },
-          {
-            id: 5,
-            value: '10',
-          },
-          {
-            id: 6,
-            value: '杨帆',
-          },
-          {
-            id: 6,
-            value: '厨余垃圾',
-          },
+    tableData.value = dataConstructor();
 
-          {
-            id: 6,
-            value: '200',
-          },
-          {
-            id: 6,
-            value: '优',
-          },
-          {
-            id: 6,
-            value: '',
-          },
-          {
-            id: 6,
-            value: '',
-          },
-          {
-            id: 6,
-            value: '',
-          },
-          {
-            id: 6,
-            value: '10',
-          },
-          {
-            id: 6,
-            value: '8',
-          },
-          {
-            id: 6,
-            value: '无照片',
-          },
-          {
-            id: 6,
-            value: '杨帆',
-          },
-          {
-            id: 6,
-            value: '20210805',
-          },
-          {
-            id: 6,
-            value: '修改',
-          },
-        ],
-        [
-          {
-            id: 0,
-            value: '3',
-          },
-          {
-            id: 1,
-            value: '红谷滩区',
-          },
-          {
-            id: 2,
-            value: '中山路105号',
-          },
-          {
-            id: 3,
-            value: '富农社区',
-          },
-          {
-            id: 4,
-            value: '蓝海湾',
-          },
-          {
-            id: 5,
-            value: '10',
-          },
-          {
-            id: 6,
-            value: '杨帆',
-          },
-          {
-            id: 6,
-            value: '厨余垃圾',
-          },
+    // 生成数据
+    function dataConstructor(amount = 100) {
+      let constructedArr = [];
+      // 1000行
+      for (let i = 0; i < Number(amount); i++) {
+        const temp = [];
+        for (let j = 0; j < 7; j++) {
+          temp.push({
+            value: `${randomColor()}`,
+            id: Math.random() * 100 + i + j,
+          });
+        }
+        constructedArr.push(temp);
+      }
+      constructedArr.unshift([
+        {
+          id: 1,
+          value: '我是表头11111111',
+        },
+        {
+          id: 1,
+          value: '我是表头22332323',
+        },
+        {
+          id: 1,
+          value: '我是表头3424213213',
+        },
+        {
+          id: 1,
+          value: '我是表头4421312312',
+        },
+        {
+          id: 1,
+          value: '我是表头54123213',
+        },
+        {
+          id: 1,
+          value: '我是表头64123123',
+        },
+        {
+          id: 1,
+          value: '我是表头741313',
+        },
+      ]);
+      return constructedArr;
+    }
 
-          {
-            id: 6,
-            value: '200',
-          },
-          {
-            id: 6,
-            value: '优',
-          },
-          {
-            id: 6,
-            value: '',
-          },
-          {
-            id: 6,
-            value: '',
-          },
-          {
-            id: 6,
-            value: '',
-          },
-          {
-            id: 6,
-            value: '10',
-          },
-          {
-            id: 6,
-            value: '8',
-          },
-          {
-            id: 6,
-            value: '无照片',
-          },
-          {
-            id: 6,
-            value: '杨帆',
-          },
-          {
-            id: 6,
-            value: '20210805',
-          },
-          {
-            id: 6,
-            value: '修改',
-          },
-        ],
-      ],
-    });
-
+    function randomColor() {
+      return Math.floor(Math.random() * 16777215).toString(16);
+    }
     return {
       tableData,
     };

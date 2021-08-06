@@ -1,21 +1,47 @@
 <template>
-  <div
+  <section
     v-on="pageMode ? {} : { scroll: handleScroll }"
     :style="containerStyle"
     ref="vb"
   >
-    <div :style="{ height: `${offsetTop}px` }"></div>
-    <div
-      :style="{
-        height: `${fixedBlockHeight ? fixedBlockHeight : item.height}px`,
-      }"
-      v-for="item in renderList"
-      :key="item.id"
-    >
-      <slot v-bind="item"></slot>
-    </div>
-    <div :style="{ height: `${offsetBot}px` }"></div>
-  </div>
+    <table class="w-full t-bg-p box-border text-center">
+      <tbody>
+        <tr :style="{ height: `${offsetTop}px` }"></tr>
+        <tr
+          :style="{
+            height: `${30}px`,
+          }"
+          :class="{ 't-th-bg': !toolsBar && index !== 0 }"
+          v-for="(cells, index) in renderList"
+          :key="cells"
+        >
+          <template v-if="index === 0">
+            <th
+              v-for="tile in cells"
+              :style="{
+                height: '100%',
+                'background-color': '#' + tile.value,
+              }"
+            >
+              {{ tile.value }}
+            </th>
+          </template>
+          <template v-else>
+            <td
+              v-for="tile in cells"
+              :style="{
+                height: '100%',
+                'background-color': '#' + tile.value,
+              }"
+            >
+              {{ tile.value }}
+            </td>
+          </template>
+        </tr>
+        <tr :style="{ height: `${offsetBot}px` }"></tr>
+      </tbody>
+    </table>
+  </section>
 </template>
 
 <script>
@@ -31,6 +57,10 @@ import {
 } from 'vue';
 export default {
   props: {
+    toolsBar: {
+      type: Boolean,
+      default: false,
+    },
     // 具体的列表的数组
     data: {
       type: Array,
@@ -41,7 +71,7 @@ export default {
       type: Number,
     },
     // 虚拟滚动去每一个item的高度
-    fixedBlockHeight: {
+    flxedBlockHeight: {
       type: Number,
     },
     // 假定是window有滚动条还是虚拟滚动区有滚动条
@@ -112,21 +142,22 @@ export default {
       }
     );
     watch(
-      () => props.fixedBlockHeight,
-      (fixedBlockHeight, prevfixedBlockHeight) => {
+      () => props.flxedBlockHeight,
+      (flxedBlockHeight, prevFlxedBlockHeight) => {
         handleScroll();
       }
     );
     function computeTransformedData(oldArr) {
       if (
-        (!props.fixedBlockHeight && props.pageMode && vb.value) ||
+        (!props.flxedBlockHeight && props.pageMode && vb.value) ||
         !props.pageMode
       ) {
         let curHeight = props.pageMode ? vb.value.offsetTop : 0;
         // 每一次的虚拟列表的第一个的scrolTop
         let rt = [curHeight];
         oldArr.forEach((item) => {
-          curHeight += item.height;
+          // curHeight += item.height;
+          curHeight += 30;
           // 每一次计算后端的scrollTop
           rt.push(curHeight);
         });
@@ -151,11 +182,11 @@ export default {
     /**
      * 存在指定的盒子高度寻找开始的下表
      */
-    function findBlockHeightLowerBound(viewportBegin, fixedBlockHeight) {
+    function findBlockHeightLowerBound(viewportBegin, flxedBlockHeight) {
       const sAdjusted = props.pageMode
         ? viewportBegin - vb.value.scrollTop
         : viewportBegin;
-      const computedStartIndex = ~~(sAdjusted / fixedBlockHeight);
+      const computedStartIndex = ~~(sAdjusted / flxedBlockHeight);
       return computedStartIndex >= 0 ? computedStartIndex : 0;
     }
 
@@ -194,12 +225,12 @@ export default {
         }
       }
     }
-    function findBlockHeightUpperBound(viewportEnd, fixedBlockHeight) {
+    function findBlockHeightUpperBound(viewportEnd, flxedBlockHeight) {
       const eAdjusted = props.pageMode
         ? viewportEnd - vb.value.scrollTop
         : viewportEnd;
       // 末尾的开始下标
-      const computedStartIndex = ~~(eAdjusted / fixedBlockHeight);
+      const computedStartIndex = ~~(eAdjusted / flxedBlockHeight);
       // 判断一下大于0就是正常返回否则就是返回0
       return computedStartIndex <= props.data.length
         ? computedStartIndex
@@ -246,22 +277,22 @@ export default {
     ) {
       // 当视窗的开始高度小于视窗结束的高度
       if (viewportBegin < viewportEnd) {
-        // 判断fixedBlockHeight是否存在
+        // 判断flxedBlockHeight是否存在
         // 开始下标
-        const lo = props.fixedBlockHeight
-          ? findBlockHeightLowerBound(viewportBegin, props.fixedBlockHeight)
+        const lo = props.flxedBlockHeight
+          ? findBlockHeightLowerBound(viewportBegin, props.flxedBlockHeight)
           : binarySearchLowerBound(viewportBegin, transformedData);
         // 结束下标
-        const hi = props.fixedBlockHeight
-          ? findBlockHeightUpperBound(viewportEnd, props.fixedBlockHeight)
+        const hi = props.flxedBlockHeight
+          ? findBlockHeightUpperBound(viewportEnd, props.flxedBlockHeight)
           : binarySearchUpperBound(viewportEnd, transformedData);
         // 计算虚拟偏移量
         let vbOffset = props.pageMode ? vb.value.offsetTop : 0;
         // 判断是否存在固定的item的高度
-        if (props.fixedBlockHeight) {
-          state.offsetTop = lo >= 0 ? lo * props.fixedBlockHeight : 0;
+        if (props.flxedBlockHeight) {
+          state.offsetTop = lo >= 0 ? lo * props.flxedBlockHeight : 0;
           state.offsetBot =
-            hi >= 0 ? (data.length - hi) * props.fixedBlockHeight : 0;
+            hi >= 0 ? (data.length - hi) * props.flxedBlockHeight : 0;
         } else {
           state.offsetTop = lo >= 0 ? transformedData[lo] - vbOffset : 0;
           state.offsetBot =

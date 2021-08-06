@@ -12,7 +12,4 @@ interface Cell {
     value: string;
 }
 
-interface ITableData {
-    th: string[];
-    data: Cell[][];
-}
+type ITableData = { value: string; id: number }[][]
